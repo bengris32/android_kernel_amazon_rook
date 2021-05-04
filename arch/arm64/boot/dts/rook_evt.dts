@@ -1,0 +1,46 @@
+/*
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ */
+
+/dts-v1/;
+
+#include "rook.dtsi"
+
+/ {
+	version = "evt";
+
+	amz_privacy {
+		gpios = <&pio 33 1>;
+		public_hw_st-gpio = <&pio 138 1>;
+		mute-gpio = <&pio 87 1>;
+		cam_pw_gate-gpio = <&pio 141 1>;
+		hw_latch = <1>;
+	};
+
+	/* Virtual sensor thermistor */
+	thermistor@3 {
+		compatible = "amazon,virtual_sensor_thermistor";
+		thermistor,offset = <8800>;
+		thermistor,offset.sign = "minus";
+		thermistor,alpha = <10>;
+		thermistor,weight = <800>;
+		aux_channel_num = <3>;
+		virtual-sensor-id = <1>;
+	};
+	keys {
+		compatible = "gpio-keys";
+		autorepeat;
+		vol_up: volumeup@115 {
+			label = "Volume Up Key";
+			linux,code = <115>;
+			gpios = <&pio 50 1>;
+			debounce-interval = <20>;
+		};
+		vol_dn: volumedn@114 {
+			label = "Volume Down Key";
+			linux,code = <114>;
+			gpios = <&pio 37 1>;
+			debounce-interval = <20>;
+		};
+	};
+};

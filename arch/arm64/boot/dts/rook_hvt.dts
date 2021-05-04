@@ -1,0 +1,16 @@
+/*
+ * Copyright 2011-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ */
+
+/dts-v1/;
+
+#include "rook.dtsi"
+
+/ {
+	version = "hvt";
+
+	amz_privacy {
+		gpios = <&pio 87 1>;
+		hw_latch = <0>;
+	};
+};
